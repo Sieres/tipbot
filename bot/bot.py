@@ -1,6 +1,7 @@
 import discord
 
 client = discord.Client()
+token = input('Token: ')
 
 @client.event
 async def on_message(message):
@@ -28,4 +29,4 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="!help"))
 
 
-client.run('MzA1ODg4NzI5OTgwMDc2MDMy.C-KSKg.BIB2hjKIy1ywaStJEEcTKxJ43uI')
+client.run(token)
