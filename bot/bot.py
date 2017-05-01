@@ -23,20 +23,24 @@ async def on_message(message):
         `!deposit (currency)` - Generate a wallet address to deposit currency in
         `!withdraw (address) (currency) (amount)` - withdraw currency
         `!balance` - Displays balance'''.format(message)
+        await client.send_message(message.channel, msg)
     if message.content.startswith('!withdraw'):
         # request address to send to
-        msg = ''.format(message)
+        msg = 'Withdraw'.format(message)
+        await client.send_message(message.channel, msg)
     if message.content.startswith('!deposit'):
         # generate address and wait for confirmed transfer
         msg = '''Deposit address: insert address here
         *This address will be valid for 15 minutes or until all transactions are verified*'''.format(message)
+        await client.send_message(message.channel, msg)
     if message.content.startswith('!tip'):
         # do tip stuff
         msg = 'Tip sent successfully'.format(message)
+        await client.send_message(message.channel, msg)
     if message.content.startswith('!balance'):
         # call balance info
         msg = 'Balance'.format(message)
-
+        await client.send_message(message.channel, msg)
 
 @client.event
 async def on_ready():
@@ -46,7 +50,8 @@ async def on_ready():
 
     # startup stuff
     await client.change_presence(game=discord.Game(name="Starting..."))
-    await client.change_presence(game=discord.Game(name="!help"))
+    #load database stuff and maybe connect to wallet
+    await client.change_presence(game=discord.Game(name="!helptip"))
 
 
 client.run(token)
