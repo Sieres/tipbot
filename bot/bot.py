@@ -1,46 +1,48 @@
 import discord
+from block_io import BlockIo
+#I'm throwing in subprocess just in case
+import subprocess
 
 client = discord.Client()
 
-# set bot login token
-token = input('Token: ')
+token = input('Discord token: ')
+blockkeyb = input('Block.io Bitcoin key: ')
+blockkeyd = input('Block.io Dogecoin key: ')
+
 print('Logging in...')
+
+bot = commands.Bot(command_prefix='!')
 
 @client.event
 async def on_message(message):
-    # keep the bot from replying to itself
-    if message.author == client.user:
-        return
 
-    # command sheet
-    if message.content.startswith('!hello'):
-        msg = 'Hello {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
-    if message.content.startswith('!status'):
-        await client.change_presence(game=discord.Game(name="Just testing stuff"))
-    if message.content.startswith('!helptip'):
-        msg = '''`!tip (username) (currency) (amount)` - Tip a user
-        `!deposit (currency)` - Generate a wallet address to deposit currency in
-        `!withdraw (address) (currency) (amount)` - withdraw currency
-        `!balance` - Displays balance'''.format(message)
-        await client.send_message(message.channel, msg)
-    if message.content.startswith('!withdraw'):
-        # request address to send to
-        msg = 'Withdraw'.format(message)
-        await client.send_message(message.channel, msg)
-    if message.content.startswith('!deposit'):
-        # generate address and wait for confirmed transfer
-        msg = '''Deposit address: insert address here
-        *This address will be valid for 15 minutes or until all transactions are verified*'''.format(message)
-        await client.send_message(message.channel, msg)
-    if message.content.startswith('!tip'):
-        # do tip stuff
-        msg = 'Tip sent successfully'.format(message)
-        await client.send_message(message.channel, msg)
-    if message.content.startswith('!balance'):
-        # call balance info
-        msg = 'Balance'.format(message)
-        await client.send_message(message.channel, msg)
+@bot.command()
+async def tip(input):
+    await bot.say('''tip''')
+
+@bot.command()
+async def withdraw(input):
+    await bot.say('''withdraw''')
+
+@bot.command()
+async def deposit(input):
+    await bot.say('''deposit''')
+    if currency = bitcoin
+        blockkeyb.get_new_address()
+    if currency = dogecoin
+        blockkeyd.get_new_address()
+@bot.command()
+async def balance(input):
+    await bot.say('''balance''')
+
+@bot.command()
+async def tiphelp(input):
+    await bot.say('''```I'll put commands as I add them
+    !tip (currency) (amount) (@user)
+    !withdraw (currency) (amount) (adress)
+    !deposit
+    !balance
+    !tiphelp```''')
 
 @client.event
 async def on_ready():
@@ -48,10 +50,9 @@ async def on_ready():
     print('ID: ' + client.user.id)
     print('-----------------------------')
 
-    # startup stuff
     await client.change_presence(game=discord.Game(name="Starting..."))
     #load database stuff and maybe connect to wallet
-    await client.change_presence(game=discord.Game(name="!helptip"))
+    await client.change_presence(game=discord.Game(name="!tiphelp"))
 
 
 client.run(token)
