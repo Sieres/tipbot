@@ -17,32 +17,41 @@ bot = commands.Bot(command_prefix='!')
 async def on_message(message):
 
 @bot.command()
-async def tip(input):
-    await bot.say('''tip''')
+async def tip(user, currency, amount):
+    await bot.say('''tip''' + user + currency +amount)
 
 @bot.command()
 async def withdraw(input):
     await bot.say('''withdraw''')
 
 @bot.command()
-async def deposit(input):
+async def deposit(currency : str):
     await bot.say('''deposit''')
-    if currency = bitcoin
-        blockkeyb.get_new_address()
-    if currency = dogecoin
-        blockkeyd.get_new_address()
+    if currency == 'bitcoin':
+        await bot.say('bitcoin deposit')
+        #block.io stuff
+    elif currency == 'dogecoin':
+        await bot.say('bitcoin deposit')
+        #block.io stuff
 @bot.command()
-async def balance(input):
+async def balance():
     await bot.say('''balance''')
 
 @bot.command()
-async def tiphelp(input):
-    await bot.say('''```I'll put commands as I add them
+async def tipabout():
+    await bot.say('''Tip Bot: a bot made by Dizee
+    Get the code here: https://github.com/Dizeeee/tipbot
+    This project is licensed under the MIT License. Feel free to share and modify it as you please!''')
+
+@bot.command()
+async def tiphelp():
+    await bot.say('''```Commands:
     !tip (currency) (amount) (@user)
     !withdraw (currency) (amount) (adress)
-    !deposit
+    !deposit (currency)
     !balance
-    !tiphelp```''')
+    !tiphelp
+    !tipabout```''')
 
 @client.event
 async def on_ready():
