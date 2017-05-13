@@ -7,5 +7,6 @@ Built with [discord.py](https://github.com/Rapptz/discord.py)
 - `!withdraw (address) (currency) (amount)` - withdraw currency
 - `!balance` - Displays balance
 - `!tiphelp` - Displays help menu
+- `!tipabout` - Displays info about the bot
 ## Setup
 I'll do this when its done

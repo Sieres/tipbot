@@ -25,8 +25,10 @@ async def withdraw(input):
     await bot.say('''withdraw''')
 
 @bot.command()
-async def deposit(currency : str):
+async def deposit(currency : str, amount : int, user):
     await bot.say('''deposit''')
+    #test print, remove when done
+    print(currency + amount + user)
     if currency == 'bitcoin':
         await bot.say('bitcoin deposit')
         #block.io stuff
