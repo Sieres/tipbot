@@ -1,6 +1,8 @@
 # Tipbot
-A [Discord](https://www.discord.gg) bot that allows users to tip Bitcoin and Dogecoin.
+A [Discord](https://www.discord.gg) bot that allows users to tip Bitcoin.
 Built with [discord.py](https://github.com/Rapptz/discord.py)
+
+This project is very much WIP and nowhere near done, DO NOT expect and semblance of complete are competent code.
 ## Commands
 - `!tip (@username) (currency) (amount)` - Tip a user
 - `!deposit (currency)` - Generate a wallet address to deposit currency in
