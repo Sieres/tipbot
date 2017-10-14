@@ -1,4 +1,7 @@
 # Tipbot
+
+This bot is no longer worked on, feel free to fork if you can salvage any code.
+
 A [Discord](https://www.discord.gg) bot that allows users to tip Bitcoin.
 Built with [discord.py](https://github.com/Rapptz/discord.py)
 
