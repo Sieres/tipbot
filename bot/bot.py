@@ -1,73 +1,65 @@
-#!python3.5
+#!/usr/bin/env python3
 
-# Discord.py
+import subprocess
 import discord
 from discord.ext import commands
-# Allows us to use terminal commands
-import subprocess
 
-client = discord.Client()
+bot = commands.Bot(command_prefix="!")
 
-token = input('Discord token: ')
+# Tip
+@bot.command()
+async def tip(user, currency, amount):
+    await bot.say("tip")
 
-print('Logging in...')
+# Withdraw
+@bot.command()
+async def withdraw(input):
+    await bot.say("withdraw")
 
-bot = commands.Bot(command_prefix='!')
+# Deposit
+@bot.command()
+async def deposit(currency: str, amount: int, user):
+    await bot.say("deposit")
+    #test print, remove when done
+    print(currency + amount + user)
+    if currency == "bitcoin":
+        await bot.say("bitcoin deposit")
 
-@client.event
-async def on_message(message):
+# Balance
+@bot.command()
+async def balance():
+    await bot.say("balance")
 
-    # Tip
-    @bot.command()
-    async def tip(user, currency, amount):
-        await bot.say('''tip''')
+# About
+@bot.command()
+async def tipabout():
+    await bot.say("""Tip Bot: a bot made by Dizee
+    Get the code here: https://github.com/Dizeeee/tipbot
+    This project is licensed under the MIT License. Feel free to share and modify it as you please!""")
 
-    # Withdraw
-    @bot.command()
-    async def withdraw(input):
-        await bot.say('''withdraw''')
-
-    # Deposit
-    @bot.command()
-    async def deposit(currency : str, amount : int, user):
-        await bot.say('''deposit''')
-        #test print, remove when done
-        print(currency + amount + user)
-        if currency == 'bitcoin':
-            await bot.say('bitcoin deposit')
-
-    # Balance
-    @bot.command()
-    async def balance():
-        await bot.say('''balance''')
-
-    # About
-    @bot.command()
-    async def tipabout():
-        await bot.say('''Tip Bot: a bot made by Dizee
-        Get the code here: https://github.com/Dizeeee/tipbot
-        This project is licensed under the MIT License. Feel free to share and modify it as you please!''')
-
-    # Help
-    @bot.command()
-    async def tiphelp():
-        await bot.say('''```Commands:
-        !tip (currency) (amount) (@user)
-        !withdraw (currency) (amount) (adress)
-        !deposit (currency)
-        !balance
-        !tiphelp
-        !tipabout```''')
+# Help
+@bot.command()
+async def tiphelp():
+    await bot.say("""```Commands:
+    !tip (currency) (amount) (@user)
+    !withdraw (currency) (amount) (adress)
+    !deposit (currency)
+    !balance
+    !tiphelp
+    !tipabout```""")
 
 @client.event
 async def on_ready():
-    print('Logged in as: ' + client.user.name)
-    print('ID: ' + client.user.id)
-    print('-----------------------------')
+    print("Logged in as:", client.user.name)
+    print("ID:", client.user.id)
+    print("-----------------------------")
 
     await client.change_presence(game=discord.Game(name="Starting..."))
     #load database stuff and maybe connect to wallet
     await client.change_presence(game=discord.Game(name="!tiphelp"))
 
-
-client.run(token)
+if __name__ == "__main__":
+    token = input("Discord token: ")
+    print("Logging in...")
+    bot.run(token)
+    bot.loop.close()
